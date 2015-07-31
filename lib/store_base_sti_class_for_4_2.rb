@@ -17,6 +17,9 @@ if ActiveRecord::VERSION::STRING =~ /^4\.2/
 
             if reflection.options[:as]
               # START PATCH
+              # original:
+              # attributes[reflection.type] = owner.class.base_class.name
+
               attributes[reflection.type] = ActiveRecord::Base.store_base_sti_class ? owner.class.base_class.name : owner.class.name
               # END PATCH
             end
